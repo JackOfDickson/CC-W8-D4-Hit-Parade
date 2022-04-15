@@ -1,10 +1,10 @@
 version: 2.1
 orbs:
-  aws-s3: circleci/aws-s3@1.0.4
+  aws-s3: circleci/aws-s3@3.0.0
 jobs:
   test:
     docker:
-      - image: cimg/node:17.9.0
+      - image: circleci/node
     steps:
       - checkout
       - run: npm install
@@ -12,7 +12,7 @@ jobs:
       - run: npm run lint
   deploy:
     docker:
-      - image: cimg/node:17.9.0
+      - image: circleci/node
     environment:
       AWS_REGION: eu-west-2
     steps:
@@ -21,11 +21,10 @@ jobs:
       - run: npm run build
       - aws-s3/sync:
           from: build
-          to: 's3://hit-parade-jack-dickson-e56/'
+          to: 's3://hit-parade-keithdhd/'
           arguments: |
             --acl public-read \
             --cache-control "max-age=86400" \
-          overwrite: true
 workflows:
   version: 2.1
   build:
