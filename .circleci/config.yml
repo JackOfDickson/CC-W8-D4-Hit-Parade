@@ -12,7 +12,8 @@ jobs:
       - run: npm run lint
   deploy:
     docker:
-      - image: circleci/python:3.9-buster-node-browsers-legacy
+      - image: cimg/node:17.9.0
+      - image: cimg/python:3.10.4
     environment:
       AWS_REGION: eu-west-2
     steps:
