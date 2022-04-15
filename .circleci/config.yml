@@ -4,7 +4,7 @@ orbs:
 jobs:
   test:
     docker:
-      - image: cimg/node:17.9.0
+      - image: cimg/python:3.6
     steps:
       - checkout
       - run: npm install
@@ -12,8 +12,7 @@ jobs:
       - run: npm run lint
   deploy:
     docker:
-      - image: cimg/node:17.9.0
-      - image: cimg/python:3.10.4
+      - image: cimg/python:3.6
     environment:
       AWS_REGION: eu-west-2
     steps:
