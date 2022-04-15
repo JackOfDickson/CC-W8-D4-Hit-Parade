@@ -4,7 +4,7 @@ orbs:
 jobs:
   test:
     docker:
-      - image: cimg/node:17.9.0
+      - image: circleci/python:3.9-buster-node-browsers-legacy
     steps:
       - checkout
       - run: npm install
@@ -12,7 +12,7 @@ jobs:
       - run: npm run lint
   deploy:
     docker:
-      - image: cimg/python:3.10.4-node
+      - image: circleci/python:3.9-buster-node-browsers-legacy
     environment:
       AWS_REGION: eu-west-2
     steps:
